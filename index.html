@@ -56,38 +56,46 @@
     function showFortune() {
       const birthday = document.getElementById("birthday").value;
       const luckyNumber = document.getElementById("luckyNumber").value;
-      const resultDiv = document.getElementById("result");
+      const result = document.getElementById("result");
 
       if (!birthday || !luckyNumber) {
-        resultDiv.innerHTML = "誕生日と好きな数字を入力してください。";
+        result.innerHTML = "誕生日と好きな数字を入力してください。";
         return;
       }
 
-      // 特別条件：淡島しのみさんの日
+      // 特別な日付に応じた処理
       if (birthday === "2005-05-13") {
-        resultDiv.innerHTML = `
+        result.innerHTML = `
           <h2>結果</h2>
-          <p><strong>あなたは淡島しのみさんですね！</strong></p>
+          <p>あなたは <strong>淡島しのみ</strong> さんですね！</p>
           <p><strong>明日は不幸が訪れます。足元にご注意を！</strong></p>
         `;
         return;
       }
 
-      // 特別条件：キノコ頭の日
       if (birthday === "2006-03-21") {
-        resultDiv.innerHTML = `
+        result.innerHTML = `
           <h2>結果</h2>
-          <p><strong>あなたはキノコ頭の予感がします。</strong></p>
+          <p>あなたは <strong>キノコ頭</strong> の予感がします。</p>
           <p><strong>恋愛も少し不安を抱えているのでは？</strong></p>
         `;
         return;
       }
 
-      // 通常の占い
+      if (birthday === "2005-05-16") {
+        result.innerHTML = `
+          <h2>結果</h2>
+          <p><strong>榊原こうたとジアールの愛の育みに迫る黒い影 倉田トウマ。</strong></p>
+          <p><strong>彼は新たなる作戦を手に今、動き出す。</strong></p>
+        `;
+        return;
+      }
+
+      // 通常のランダム占い
       const personality = personalities[Math.floor(Math.random() * personalities.length)];
       const fortune = fortunes[Math.floor(Math.random() * fortunes.length)];
 
-      resultDiv.innerHTML = `
+      result.innerHTML = `
         <h2>結果</h2>
         <p><strong>あなたの性格:</strong> ${personality}</p>
         <p><strong>明日の運勢:</strong> ${fortune}</p>
