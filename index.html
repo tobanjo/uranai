@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>特別占いアプリ</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      padding: 20px;
+      text-align: center;
+    }
+    input, button {
+      margin: 10px;
+      padding: 10px;
+      font-size: 1em;
+    }
+    .result {
+      margin-top: 20px;
+      padding: 20px;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body>
+
+  <h1>あなたの占い</h1>
+
+  <label>誕生日：<input type="date" id="birthday"></label><br>
+  <label>好きな数字：<input type="number" id="luckyNumber" min="1" max="99"></label><br>
+  <button onclick="showFortune()">占う！</button>
+
+  <div class="result" id="result"></div>
+
+  <script>
+    const personalities = [
+      "リーダー気質で責任感が強い",
+      "想像力が豊かで芸術的センスにあふれている",
+      "とても社交的で周囲を明るくするタイプ",
+      "冷静沈着で分析力に優れている",
+      "自由奔放でマイペースな性格",
+      "優しくて思いやりにあふれている"
+    ];
+
+    const fortunes = [
+      "最高の一日になるでしょう！チャンスを逃さないで！",
+      "思いがけない幸運が舞い込むかも！",
+      "落ち着いて行動すれば、良い方向に進みます。",
+      "今日は少し注意が必要。焦らず慎重に！",
+      "人との関わりがカギになります。会話を大切に。",
+      "疲れが出やすい日。しっかり休みましょう。"
+    ];
+
+    function showFortune() {
+      const birthday = document.getElementById("birthday").value;
+      const luckyNumber = document.getElementById("luckyNumber").value;
+      const resultDiv = document.getElementById("result");
+
+      if (!birthday || !luckyNumber) {
+        resultDiv.innerHTML = "誕生日と好きな数字を入力してください。";
+        return;
+      }
+
+      // 特別条件：淡島しのみさんの日
+      if (birthday === "2005-05-13") {
+        resultDiv.innerHTML = `
+          <h2>結果</h2>
+          <p><strong>あなたは淡島しのみさんですね！</strong></p>
+          <p><strong>明日は不幸が訪れます。足元にご注意を！</strong></p>
+        `;
+        return;
+      }
+
+      // 特別条件：キノコ頭の日
+      if (birthday === "2006-03-21") {
+        resultDiv.innerHTML = `
+          <h2>結果</h2>
+          <p><strong>あなたはキノコ頭の予感がします。</strong></p>
+          <p><strong>恋愛も少し不安を抱えているのでは？</strong></p>
+        `;
+        return;
+      }
+
+      // 通常の占い
+      const personality = personalities[Math.floor(Math.random() * personalities.length)];
+      const fortune = fortunes[Math.floor(Math.random() * fortunes.length)];
+
+      resultDiv.innerHTML = `
+        <h2>結果</h2>
+        <p><strong>あなたの性格:</strong> ${personality}</p>
+        <p><strong>明日の運勢:</strong> ${fortune}</p>
+      `;
+    }
+  </script>
+
+</body>
+</html>
+
